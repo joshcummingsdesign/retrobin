@@ -65,6 +65,7 @@ function Artwork({ src, alt }: { src: string; alt: string }) {
 
 export default function Catalog() {
   const [consoles, setConsoles] = useState<Console[]>([]);
+  const [allConsoles, setAllConsoles] = useState<Console[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState(0);
   const [kind, setKind] = useState<Item["type"]>("game");
@@ -78,6 +79,7 @@ export default function Catalog() {
       loadCsv<Item>("/data/items.csv"),
     ])
       .then(([nextConsoles, nextItems]) => {
+        setAllConsoles(nextConsoles);
         setConsoles(nextConsoles
           .filter((console) => nextItems.some((item) => item.type === "game" && item.consoleIds.split("|").includes(console.id)))
           .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate)));
@@ -194,12 +196,15 @@ export default function Catalog() {
       <section className="collection" aria-label={`${current.name} collection`}>
         <div className="item-list">
             {visibleItems.map((item) => {
-              const original = consoles.find((console) => console.id === item.originalConsoleId);
+              const original = allConsoles.find((console) => console.id === item.originalConsoleId);
               return (
                 <details key={item.id} name={`${current.id}-${kind}`}>
                   <summary>
                     <Artwork src={item.imagePath} alt="" />
-                    <span>{item.name}</span>
+                    <span className="item-name">
+                      {item.name}
+                      {kind === "game" && original && <small>{original.name}</small>}
+                    </span>
                     <time dateTime={item.releaseDate}>{date(item.releaseDate, true)}</time>
                   </summary>
                   <div className="item-details">
