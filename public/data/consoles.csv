@@ -1,0 +1,4 @@
+id,name,releaseDate,company,imagePath
+game-boy,Game Boy,1989-04-21,Nintendo,/images/consoles/game-boy.webp
+super-nintendo,Super Nintendo,1990-11-21,Nintendo,/images/consoles/super-nintendo.webp
+gba-sp,Game Boy Advance SP,2003-02-14,Nintendo,/images/consoles/gba-sp.webp

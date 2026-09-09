@@ -1,0 +1,21 @@
+id,type,name,originalConsoleId,consoleIds,releaseDate,company,imagePath
+tetris,game,Tetris,game-boy,game-boy|gba-sp,1989-06-14,Nintendo,/images/games/tetris.webp
+super-mario-land,game,Super Mario Land,game-boy,game-boy|gba-sp,1989-04-21,Nintendo,/images/games/super-mario-land.webp
+kirbys-dream-land,game,Kirby's Dream Land,game-boy,game-boy|gba-sp,1992-04-27,Nintendo,/images/games/kirbys-dream-land.webp
+pokemon-red,game,Pokémon Red,game-boy,game-boy|gba-sp,1998-09-28,Nintendo,/images/games/pokemon-red.webp
+super-mario-world,game,Super Mario World,super-nintendo,super-nintendo,1990-11-21,Nintendo,/images/games/super-mario-world.webp
+f-zero,game,F-Zero,super-nintendo,super-nintendo,1991-08-23,Nintendo,/images/games/f-zero.webp
+zelda-link-to-the-past,game,The Legend of Zelda: A Link to the Past,super-nintendo,super-nintendo,1992-04-13,Nintendo,/images/games/zelda-link-to-the-past.webp
+donkey-kong-country,game,Donkey Kong Country,super-nintendo,super-nintendo,1994-11-21,Nintendo,/images/games/donkey-kong-country.webp
+metroid-fusion,game,Metroid Fusion,gba-sp,gba-sp,2002-11-18,Nintendo,/images/games/metroid-fusion.webp
+advance-wars,game,Advance Wars,gba-sp,gba-sp,2001-09-10,Nintendo,/images/games/advance-wars.webp
+warioware,game,WarioWare Inc.,gba-sp,gba-sp,2003-05-26,Nintendo,/images/games/warioware.webp
+game-boy-link-cable,accessory,Game Link Cable,,game-boy|gba-sp,1989-07-31,Nintendo,/images/accessories/game-boy-link-cable.webp
+game-boy-camera,accessory,Game Boy Camera,,game-boy|gba-sp,1998-06-01,Nintendo,/images/accessories/game-boy-camera.webp
+game-boy-printer,accessory,Game Boy Printer,,game-boy|gba-sp,1998-06-01,Nintendo,/images/accessories/game-boy-printer.webp
+snes-controller,accessory,SNES Controller,,super-nintendo,1991-08-23,Nintendo,/images/accessories/snes-controller.webp
+snes-mouse,accessory,SNES Mouse,,super-nintendo,1992-08-01,Nintendo,/images/accessories/snes-mouse.webp
+super-scope,accessory,Super Scope,,super-nintendo,1992-02-01,Nintendo,/images/accessories/super-scope.webp
+gba-sp-case,accessory,GBA SP Carrying Case,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-case.webp
+gba-sp-adapter,accessory,GBA SP AC Adapter,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-adapter.webp
+gba-sp-headphones,accessory,GBA SP Headphone Adapter,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-headphones.webp

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Game artwork placeholder">
+  <rect width="800" height="600" rx="42" fill="#15181d"/>
+  <rect x="270" y="100" width="260" height="375" rx="18" fill="#222831" stroke="#1685ff" stroke-width="12"/>
+  <path d="M306 145h188v220H306z" fill="#0d2239" stroke="#5c6570" stroke-width="6"/>
+  <circle cx="400" cy="255" r="62" fill="none" stroke="#e3343f" stroke-width="14"/>
+  <path d="m368 272 34-58 34 58Z" fill="#f4f6f8"/>
+  <path d="M322 410h156" stroke="#9ba3ad" stroke-width="11" stroke-linecap="round"/>
+  <text x="400" y="535" fill="#9ba3ad" font-family="Arial,sans-serif" font-size="27" text-anchor="middle" letter-spacing="7">GAME</text>
+</svg>

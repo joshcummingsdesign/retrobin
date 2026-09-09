@@ -1,0 +1,91 @@
+:root {
+  --ink: #f4f6f8;
+  --muted: #9ba3ad;
+  --line: #303741;
+  --panel: #15181d;
+  --accent: #1685ff;
+  --red: #e3343f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #090b0e;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, a { font: inherit; }
+button { color: inherit; }
+.hero {
+  position: relative;
+  min-height: min(900px, 100vh);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  padding: clamp(120px, 12vw, 150px) clamp(20px, 7vw, 110px) clamp(42px, 6vw, 72px);
+  overflow: hidden;
+  touch-action: pan-y;
+  background: radial-gradient(circle at 50% 36%, #102e50 0, #111820 34%, #090b0e 70%);
+}
+.hero-copy { width: min(760px, 100%); text-align: center; }
+.eyebrow, .item-type { margin: 0 0 14px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+h1 { margin: 0 0 24px; font-size: clamp(50px, 7vw, 96px); line-height: .9; letter-spacing: -.07em; }
+dl { margin: 0; }
+dl div { display: grid; grid-template-columns: 90px 1fr; padding: 9px 0; border-bottom: 1px solid var(--line); }
+dt { color: var(--muted); }
+dd { margin: 0; }
+.hero-copy dl { width: min(520px, 100%); margin-inline: auto; text-align: left; }
+.hero-art { position: relative; width: min(1040px, 96vw); height: clamp(330px, 43vh, 470px); }
+.carousel-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(520px, 55vw);
+  height: 390px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: calc(1 - var(--distance) * .25);
+  transform: translateX(calc(-50% + var(--offset) * 62%)) translateY(calc(var(--distance) * 66px)) rotate(calc(var(--offset) * 9deg)) scale(var(--scale));
+  transition: transform .45s cubic-bezier(.22, .8, .24, 1), opacity .3s ease;
+}
+.carousel-card img { width: 100%; height: 100%; min-height: 0; object-fit: contain; filter: drop-shadow(0 28px 32px #000a); }
+.carousel-card.far { opacity: 0; pointer-events: none; }
+.carousel-card:not(.selected):hover { opacity: .9; }
+.carousel-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 22px; }
+.console-controls { margin-top: 26px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.console-controls > button {
+  width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer;
+}
+.console-controls > button:hover, .console-controls > button:focus-visible { border-color: var(--accent); }
+.console-dots { display: flex; gap: 8px; }
+.console-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: #55514b; cursor: pointer; }
+.console-dots button.active { width: 24px; border-radius: 8px; background: var(--accent); }
+.catalog-bar { position: absolute; top: clamp(28px, 4vw, 50px); width: min(1040px, 86vw); display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+.back { display: inline-flex; align-items: center; gap: 6px; padding: 10px 0; border: 0; color: var(--muted); background: transparent; cursor: pointer; }
+.back-arrow { line-height: 1; transform: translateY(-1px); }
+.back:hover, .back:focus-visible { color: var(--ink); }
+.tabs { display: flex; padding: 4px; border: 1px solid var(--line); border-radius: 999px; }
+.tabs button { padding: 10px 18px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+.tabs button.active { color: #090b0e; background: var(--ink); }
+.empty, .status { min-height: 50vh; display: grid; place-items: center; color: var(--muted); }
+.status { min-height: 100vh; align-content: center; gap: 4px; }
+.status p { margin: 0; color: var(--ink); }
+
+@media (max-width: 760px) {
+  .hero { min-height: auto; padding-top: 110px; background: radial-gradient(circle at 50% 27%, #102e50 0, #111820 38%, #090b0e 72%); }
+  .hero-art { width: 100%; height: 285px; }
+  .carousel-card { width: 68vw; height: 230px; transform: translateX(calc(-50% + var(--offset) * 54%)) translateY(calc(var(--distance) * 42px)) rotate(calc(var(--offset) * 8deg)) scale(var(--scale)); }
+  .console-controls { margin: 24px 0 8px; }
+  .tabs { width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .carousel-card { transition: none; }
+}

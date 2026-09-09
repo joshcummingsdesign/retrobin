@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Accessory artwork placeholder">
+  <rect width="800" height="600" rx="42" fill="#15181d"/>
+  <path d="M250 235c-54 0-90 42-103 105l-20 96c-8 40 38 63 64 31l77-92h264l77 92c26 32 72 9 64-31l-20-96c-13-63-49-105-103-105Z" fill="#222831" stroke="#1685ff" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M235 313h88m-44-44v88" stroke="#f4f6f8" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="518" cy="296" r="15" fill="#e3343f"/><circle cx="560" cy="338" r="15" fill="#1685ff"/>
+  <text x="400" y="535" fill="#9ba3ad" font-family="Arial,sans-serif" font-size="27" text-anchor="middle" letter-spacing="7">ACCESSORY</text>
+</svg>

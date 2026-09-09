@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Console artwork placeholder">
+  <rect width="800" height="600" rx="42" fill="#15181d"/>
+  <path d="M180 235h440a52 52 0 0 1 52 52v88a52 52 0 0 1-52 52H180a52 52 0 0 1-52-52v-88a52 52 0 0 1 52-52Z" fill="#222831" stroke="#1685ff" stroke-width="12"/>
+  <path d="M224 331h76m-38-38v76" stroke="#f4f6f8" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="548" cy="308" r="15" fill="#e3343f"/><circle cx="590" cy="350" r="15" fill="#1685ff"/>
+  <path d="M350 275h100" stroke="#5c6570" stroke-width="12" stroke-linecap="round"/>
+  <text x="400" y="500" fill="#9ba3ad" font-family="Arial,sans-serif" font-size="27" text-anchor="middle" letter-spacing="7">CONSOLE</text>
+</svg>
