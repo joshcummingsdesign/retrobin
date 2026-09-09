@@ -76,7 +76,9 @@ export default function Catalog() {
       loadCsv<Item>("/data/items.csv"),
     ])
       .then(([nextConsoles, nextItems]) => {
-        setConsoles(nextConsoles.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate)));
+        setConsoles(nextConsoles
+          .filter((console) => nextItems.some((item) => item.type === "game" && item.consoleIds.split("|").includes(console.id)))
+          .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate)));
         setItems(nextItems);
       })
       .catch((reason: Error) => setError(reason.message));

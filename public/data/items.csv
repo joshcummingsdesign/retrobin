@@ -1,21 +1,39 @@
 id,type,name,originalConsoleId,consoleIds,releaseDate,company,imagePath
-tetris,game,Tetris,game-boy,game-boy|gba-sp,1989-06-14,Nintendo,/images/games/tetris.webp
-super-mario-land,game,Super Mario Land,game-boy,game-boy|gba-sp,1989-04-21,Nintendo,/images/games/super-mario-land.webp
-kirbys-dream-land,game,Kirby's Dream Land,game-boy,game-boy|gba-sp,1992-04-27,Nintendo,/images/games/kirbys-dream-land.webp
-pokemon-red,game,Pokémon Red,game-boy,game-boy|gba-sp,1998-09-28,Nintendo,/images/games/pokemon-red.webp
-super-mario-world,game,Super Mario World,super-nintendo,super-nintendo,1990-11-21,Nintendo,/images/games/super-mario-world.webp
-f-zero,game,F-Zero,super-nintendo,super-nintendo,1991-08-23,Nintendo,/images/games/f-zero.webp
-zelda-link-to-the-past,game,The Legend of Zelda: A Link to the Past,super-nintendo,super-nintendo,1992-04-13,Nintendo,/images/games/zelda-link-to-the-past.webp
-donkey-kong-country,game,Donkey Kong Country,super-nintendo,super-nintendo,1994-11-21,Nintendo,/images/games/donkey-kong-country.webp
-metroid-fusion,game,Metroid Fusion,gba-sp,gba-sp,2002-11-18,Nintendo,/images/games/metroid-fusion.webp
-advance-wars,game,Advance Wars,gba-sp,gba-sp,2001-09-10,Nintendo,/images/games/advance-wars.webp
-warioware,game,WarioWare Inc.,gba-sp,gba-sp,2003-05-26,Nintendo,/images/games/warioware.webp
-game-boy-link-cable,accessory,Game Link Cable,,game-boy|gba-sp,1989-07-31,Nintendo,/images/accessories/game-boy-link-cable.webp
-game-boy-camera,accessory,Game Boy Camera,,game-boy|gba-sp,1998-06-01,Nintendo,/images/accessories/game-boy-camera.webp
-game-boy-printer,accessory,Game Boy Printer,,game-boy|gba-sp,1998-06-01,Nintendo,/images/accessories/game-boy-printer.webp
-snes-controller,accessory,SNES Controller,,super-nintendo,1991-08-23,Nintendo,/images/accessories/snes-controller.webp
-snes-mouse,accessory,SNES Mouse,,super-nintendo,1992-08-01,Nintendo,/images/accessories/snes-mouse.webp
-super-scope,accessory,Super Scope,,super-nintendo,1992-02-01,Nintendo,/images/accessories/super-scope.webp
-gba-sp-case,accessory,GBA SP Carrying Case,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-case.webp
-gba-sp-adapter,accessory,GBA SP AC Adapter,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-adapter.webp
-gba-sp-headphones,accessory,GBA SP Headphone Adapter,,gba-sp,2003-02-14,Nintendo,/images/accessories/gba-sp-headphones.webp
+genesis-controllers,accessory,Controllers,genesis,genesis,1989-08-14,Sega,
+genesis-sonic,game,Sonic the Hedgehog,genesis,genesis,1991-06-23,Sega,
+genesis-sonic-2,game,Sonic the Hedgehog 2,genesis,genesis,1992-11-24,Sega,
+genesis-sonic-3,game,Sonic the Hedgehog 3,genesis,genesis,1994-02-02,Sega,
+genesis-sonic-knuckles,game,Sonic & Knuckles,genesis,genesis,1994-10-18,Sega,
+genesis-nba-jam,game,NBA Jam,genesis,genesis,1994-03-04,Midway,
+genesis-ren-stimpy,game,Ren & Stimpy,genesis,genesis,1993-08-01,BlueSky Software,
+genesis-toy-story,game,Toy Story,genesis,genesis,1996-11-22,Traveller's Tales,
+genesis-jurassic-park,game,Jurassic Park,genesis,genesis,1993-08-10,BlueSky Software,
+snes-controllers,accessory,Controllers,snes,snes,1991-08-23,Nintendo,
+snes-super-mario-world,game,Super Mario World,snes,snes,1991-08-23,Nintendo,
+snes-donkey-kong-country,game,Donkey Kong Country,snes,snes,1994-11-21,Rare,
+snes-home-alone,game,Home Alone,snes,snes,1991-12-01,Imagineering,
+game-gear-case,accessory,Carrying Case,game-gear,game-gear,1991-04-15,Sega,
+game-gear-sonic,game,Sonic the Hedgehog,game-gear,game-gear,1992-02-01,Ancient,
+game-gear-sonic-2,game,Sonic the Hedgehog 2,game-gear,game-gear,1992-12-01,Sega,
+game-gear-lion-king,game,The Lion King,game-gear,game-gear,1994-11-09,Westwood Studios,
+game-gear-power-rangers,game,Power Rangers,game-gear,game-gear,1994-09-01,Sims,
+gba-sp-case,accessory,Carrying Case,gba-sp,gba-sp,2003-03-23,ALS Industries,
+gb-tetris,game,Tetris,gb,gba-sp,1989-07-31,Nintendo,
+gb-pokemon-red,game,Pokémon Red,gb,gba-sp,1998-09-28,Game Freak,
+gba-mario-kart-super-circuit,game,Mario Kart Super Circuit,gba,gba-sp,2001-08-27,Intelligent Systems,
+gba-super-mario-advance-2,game,Super Mario Advance 2: Super Mario World,gba,gba-sp,2002-02-11,Nintendo,
+wii-controllers,accessory,Controllers,wii,wii,2006-11-19,Nintendo,
+wii-microphone,accessory,USB Microphone,wii,wii,2010-10-05,Logitech,
+wii-animal-crossing-city-folk,game,Animal Crossing: City Folk,wii,wii,2008-11-16,Nintendo,
+wii-sports-resort,game,Wii Sports Resort,wii,wii,2009-07-26,Nintendo,
+wii-sports,game,Wii Sports,wii,wii,2006-11-19,Nintendo,
+wii-mario-kart-wii,game,Mario Kart Wii,wii,wii,2008-04-27,Nintendo,
+wii-donkey-kong-country-returns,game,Donkey Kong Country Returns,wii,wii,2010-11-21,Retro Studios,
+wii-epic-mickey,game,Epic Mickey,wii,wii,2010-11-30,Disney,
+wii-madden-10,game,Madden NFL 2010,wii,wii,2009-08-14,EA,
+wii-just-dance-2,game,Just Dance 2,wii,wii,2010-10-12,Ubisoft,
+wii-def-jam-rap-star,game,Def Jam Rap Star,wii,wii,2010-10-05,Terminal Reality,
+nes-super-mario-3,game,Super Mario Bros. 3,nes,wii,1990-02-12,Nintendo,
+n64-super-mario-64,game,Super Mario 64,n64,wii,1996-09-29,Nintendo,
+n64-mario-party-2,game,Mario Party 2,n64,wii,2000-01-24,Hudson Soft,
+n64-1080-snowboarding,game,1080° Snowboarding,n64,wii,1998-04-01,Nintendo,

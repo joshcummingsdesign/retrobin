@@ -1,4 +1,10 @@
 id,name,releaseDate,company,imagePath
-game-boy,Game Boy,1989-04-21,Nintendo,/images/consoles/game-boy.webp
-super-nintendo,Super Nintendo,1990-11-21,Nintendo,/images/consoles/super-nintendo.webp
-gba-sp,Game Boy Advance SP,2003-02-14,Nintendo,/images/consoles/gba-sp.webp
+nes,NES,1985-10-18,Nintendo,
+gb,Game Boy,1989-07-31,Nintendo,
+genesis,Sega Genesis,1989-08-14,Sega,
+game-gear,Game Gear,1991-04-15,Sega,
+snes,Super Nintendo,1991-08-23,Nintendo,
+n64,Nintendo 64,1996-09-29,Nintendo,
+gba,Game Boy Advance,2001-06-11,Nintendo,
+gba-sp,Game Boy Advance SP,2003-03-23,Nintendo,
+wii,Wii,2006-11-19,Nintendo,

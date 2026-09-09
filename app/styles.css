@@ -35,7 +35,7 @@ main { background: radial-gradient(ellipse at 50% 30%, #102e50 0, #111820 38%, #
 }
 .hero-copy { width: min(760px, 100%); text-align: center; }
 .eyebrow, .item-type { margin: 0 0 14px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
-h1 { margin: 0 0 24px; font-size: clamp(50px, 7vw, 96px); line-height: .9; letter-spacing: -.07em; }
+h1 { margin: 0 0 24px; font-size: clamp(38px, calc(7vw - 12px), 84px); line-height: .9; letter-spacing: -.07em; }
 dl { margin: 0; }
 dl div { display: grid; grid-template-columns: 90px 1fr; padding: 9px 0; border-bottom: 1px solid var(--line); }
 dt { color: var(--muted); }
