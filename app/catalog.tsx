@@ -57,6 +57,7 @@ function Artwork({ src, alt }: { src: string; alt: string }) {
     <img
       src={failed || !src ? placeholder : src}
       alt={alt}
+      draggable={false}
       onError={() => setFailed(true)}
     />
   );
@@ -68,7 +69,8 @@ export default function Catalog() {
   const [selected, setSelected] = useState(0);
   const [kind, setKind] = useState<Item["type"]>("game");
   const [error, setError] = useState("");
-  const touchStart = useRef(0);
+  const pointerStart = useRef<number | null>(null);
+  const dragged = useRef(false);
 
   useEffect(() => {
     Promise.all([
@@ -110,13 +112,34 @@ export default function Catalog() {
       <section
         className="hero"
         id="top"
-        onTouchStart={(event) => { touchStart.current = event.changedTouches[0].clientX; }}
-        onTouchEnd={(event) => {
-          const distance = event.changedTouches[0].clientX - touchStart.current;
-          if (Math.abs(distance) > 50) move(distance > 0 ? -1 : 1);
-        }}
       >
-        <div className="hero-art" aria-label="Console carousel">
+        <div
+          className="hero-art"
+          aria-label="Console carousel"
+          onClickCapture={(event) => {
+          if (!dragged.current) return;
+          event.preventDefault();
+          event.stopPropagation();
+          dragged.current = false;
+          }}
+          onPointerDown={(event) => {
+            if (event.button !== 0) return;
+            pointerStart.current = event.clientX;
+            dragged.current = false;
+          }}
+          onPointerMove={(event) => {
+            if (pointerStart.current === null || dragged.current || Math.abs(event.clientX - pointerStart.current) <= 10) return;
+            dragged.current = true;
+            event.currentTarget.setPointerCapture(event.pointerId);
+          }}
+          onPointerUp={(event) => {
+            if (pointerStart.current === null) return;
+            const distance = event.clientX - pointerStart.current;
+            pointerStart.current = null;
+            if (Math.abs(distance) > 50) move(distance > 0 ? -1 : 1);
+          }}
+          onPointerCancel={() => { pointerStart.current = null; }}
+        >
           {consoles.map((entry, index) => {
             const offset = carouselOffset(index);
             const distance = Math.abs(offset);
@@ -128,14 +151,14 @@ export default function Catalog() {
             } as CSSProperties;
             return (
               <button
-                className={`carousel-card${offset === 0 ? " selected" : ""}${distance > 2 ? " far" : ""}`}
+                className={`carousel-card${offset === 0 ? " selected" : ""}${distance > 1 ? " far" : ""}`}
                 key={entry.id}
                 style={style}
                 onClick={() => setSelected(index)}
                 aria-label={`Show ${entry.name}`}
                 aria-current={offset === 0 ? "true" : undefined}
-                aria-hidden={distance > 2}
-                tabIndex={distance > 2 ? -1 : 0}
+                aria-hidden={distance > 1}
+                tabIndex={distance > 1 ? -1 : 0}
               >
                 <Artwork src={entry.imagePath} alt="" />
               </button>
