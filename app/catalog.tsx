@@ -66,9 +66,7 @@ export default function Catalog() {
   const [consoles, setConsoles] = useState<Console[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(0);
   const [kind, setKind] = useState<Item["type"]>("game");
-  const [view, setView] = useState<"systems" | "items">("systems");
   const [error, setError] = useState("");
   const touchStart = useRef(0);
 
@@ -91,11 +89,6 @@ export default function Catalog() {
       .filter((item) => item.type === kind && item.consoleIds.split("|").includes(current.id))
       .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
   }, [current, items, kind]);
-  const activeItemIndex = visibleItems.length ? selectedItem % visibleItems.length : 0;
-  const activeItem = visibleItems[activeItemIndex];
-
-  useEffect(() => setSelectedItem(0), [selected, kind]);
-
   const move = (amount: number) => {
     setSelected((index) => (index + amount + consoles.length) % consoles.length);
   };
@@ -106,20 +99,6 @@ export default function Catalog() {
     if (offset < -consoles.length / 2) offset += consoles.length;
     return offset;
   };
-
-  const itemCarouselOffset = (index: number) => {
-    let offset = index - activeItemIndex;
-    if (offset > visibleItems.length / 2) offset -= visibleItems.length;
-    if (offset < -visibleItems.length / 2) offset += visibleItems.length;
-    return offset;
-  };
-
-  const moveItem = (amount: number) => {
-    if (!visibleItems.length) return;
-    setSelectedItem((index) => (index + amount + visibleItems.length) % visibleItems.length);
-  };
-
-  const moveActive = (amount: number) => view === "systems" ? move(amount) : moveItem(amount);
 
   if (error) return <main className="status"><p>Couldn’t load the collection.</p><small>{error}</small></main>;
   if (!current) return <main className="status">Loading collection…</main>;
@@ -132,25 +111,12 @@ export default function Catalog() {
         onTouchStart={(event) => { touchStart.current = event.changedTouches[0].clientX; }}
         onTouchEnd={(event) => {
           const distance = event.changedTouches[0].clientX - touchStart.current;
-          if (Math.abs(distance) > 50) moveActive(distance > 0 ? -1 : 1);
+          if (Math.abs(distance) > 50) move(distance > 0 ? -1 : 1);
         }}
       >
-        {view === "items" && (
-          <div className="catalog-bar">
-            <button className="back" onClick={() => setView("systems")}>
-              <span className="back-arrow" aria-hidden="true">←</span>
-              <span>Consoles</span>
-            </button>
-          <div className="tabs" role="group" aria-label="Collection type">
-            <button className={kind === "game" ? "active" : ""} onClick={() => setKind("game")}>Games</button>
-            <button className={kind === "accessory" ? "active" : ""} onClick={() => setKind("accessory")}>Accessories</button>
-          </div>
-          </div>
-        )}
-
-        <div className="hero-art" aria-label={view === "systems" ? "Console carousel" : `${kind} carousel`}>
-          {(view === "systems" ? consoles : visibleItems).map((entry, index) => {
-            const offset = view === "systems" ? carouselOffset(index) : itemCarouselOffset(index);
+        <div className="hero-art" aria-label="Console carousel">
+          {consoles.map((entry, index) => {
+            const offset = carouselOffset(index);
             const distance = Math.abs(offset);
             const style = {
               "--offset": offset,
@@ -160,18 +126,10 @@ export default function Catalog() {
             } as CSSProperties;
             return (
               <button
-                className={`carousel-card${view === "items" ? " item" : ""}${offset === 0 ? " selected" : ""}${distance > 2 ? " far" : ""}`}
+                className={`carousel-card${offset === 0 ? " selected" : ""}${distance > 2 ? " far" : ""}`}
                 key={entry.id}
                 style={style}
-                onClick={() => {
-                  if (view === "systems") {
-                    if (index === selected) {
-                      setSelectedItem(0);
-                      setKind("game");
-                      setView("items");
-                    } else setSelected(index);
-                  } else setSelectedItem(index);
-                }}
+                onClick={() => setSelected(index)}
                 aria-label={`Show ${entry.name}`}
                 aria-current={offset === 0 ? "true" : undefined}
                 aria-hidden={distance > 2}
@@ -181,48 +139,55 @@ export default function Catalog() {
               </button>
             );
           })}
-          {view === "items" && !visibleItems.length && (
-            <p className="empty">No {kind === "game" ? "games" : "accessories"} added yet.</p>
-          )}
         </div>
 
         <div className="hero-copy">
-          {view === "systems" ? (
-            <>
-              <p className="eyebrow">{current.company} · {date(current.releaseDate, true)}</p>
-              <h1>{current.name}</h1>
-              <dl>
-                <div><dt>Released</dt><dd>{date(current.releaseDate)}</dd></div>
-                <div><dt>By</dt><dd>{current.company || "Unknown"}</dd></div>
-              </dl>
-            </>
-          ) : activeItem ? (() => {
-            const original = consoles.find((console) => console.id === activeItem.originalConsoleId);
-            return (
-              <>
-                <p className="eyebrow">{activeItem.company} · {date(activeItem.releaseDate, true)}</p>
-                <h1>{activeItem.name}</h1>
-                <dl>
-                  <div><dt>Released</dt><dd>{date(activeItem.releaseDate)}</dd></div>
-                  <div><dt>By</dt><dd>{activeItem.company || "Unknown"}</dd></div>
-                  {kind === "game" && original && <div><dt>Console</dt><dd>{original.name} ({date(original.releaseDate, true)})</dd></div>}
-                </dl>
-              </>
-            );
-          })() : <h1>No {kind === "game" ? "games" : "accessories"}</h1>}
+          <p className="eyebrow">{current.company} · {date(current.releaseDate, true)}</p>
+          <h1>{current.name}</h1>
+          <dl>
+            <div><dt>Released</dt><dd>{date(current.releaseDate)}</dd></div>
+            <div><dt>By</dt><dd>{current.company || "Unknown"}</dd></div>
+          </dl>
 
-          {(view === "systems" || visibleItems.length > 1) && (
-            <nav className="console-controls" aria-label={`Choose a ${view === "systems" ? "console" : kind}`}>
-              <button onClick={() => moveActive(-1)} aria-label="Previous">←</button>
-              <div className="console-dots">
-                {(view === "systems" ? consoles : visibleItems).map((entry, index) => {
-                  const isActive = index === (view === "systems" ? selected : activeItemIndex);
-                  return <button className={isActive ? "active" : ""} key={entry.id} onClick={() => view === "systems" ? setSelected(index) : setSelectedItem(index)} aria-label={`Show ${entry.name}`} aria-current={isActive ? "true" : undefined} />;
-                })}
-              </div>
-              <button onClick={() => moveActive(1)} aria-label="Next">→</button>
-            </nav>
-          )}
+          <nav className="console-controls" aria-label="Choose a console">
+            <button onClick={() => move(-1)} aria-label="Previous">←</button>
+            <div className="console-dots">
+              {consoles.map((entry, index) => {
+                const isActive = index === selected;
+                return <button className={isActive ? "active" : ""} key={entry.id} onClick={() => setSelected(index)} aria-label={`Show ${entry.name}`} aria-current={isActive ? "true" : undefined} />;
+              })}
+            </div>
+            <button onClick={() => move(1)} aria-label="Next">→</button>
+          </nav>
+          <div className="tabs" role="group" aria-label="Collection type">
+            <button className={kind === "game" ? "active" : ""} onClick={() => setKind("game")}>Games</button>
+            <button className={kind === "accessory" ? "active" : ""} onClick={() => setKind("accessory")}>Accessories</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="collection" aria-label={`${current.name} collection`}>
+        <div className="item-list">
+            {visibleItems.map((item) => {
+              const original = consoles.find((console) => console.id === item.originalConsoleId);
+              return (
+                <details key={item.id} name={`${current.id}-${kind}`}>
+                  <summary>
+                    <Artwork src={item.imagePath} alt="" />
+                    <span>{item.name}</span>
+                    <time dateTime={item.releaseDate}>{date(item.releaseDate, true)}</time>
+                  </summary>
+                  <div className="item-details">
+                    <dl>
+                      <div><dt>Released</dt><dd>{date(item.releaseDate)}</dd></div>
+                      <div><dt>By</dt><dd>{item.company || "Unknown"}</dd></div>
+                      {kind === "game" && original && <div><dt>Console</dt><dd>{original.name} ({date(original.releaseDate, true)})</dd></div>}
+                    </dl>
+                  </div>
+                </details>
+              );
+            })}
+            {!visibleItems.length && <p className="empty">No {kind === "game" ? "games" : "accessories"} added yet.</p>}
         </div>
       </section>
     </main>
