@@ -142,10 +142,10 @@ export default function Catalog() {
   return (
     <main>
       <header className="site-header">
-        <a href="#top" className="brand" aria-label="RetroBin">
+        <div className="brand">
           <img src="/images/retrobin-mark.png" alt="" />
           RetroBin
-        </a>
+        </div>
         <span>Console Archive</span>
       </header>
       <section className="hero" id="top">
@@ -265,7 +265,12 @@ export default function Catalog() {
             </button>
           </div>
           <span>
-            {visibleItems.length} {kind === "game" ? "games" : "accessories"}
+            {visibleItems.length}{" "}
+            {visibleItems.length === 1
+              ? kind
+              : kind === "game"
+                ? "games"
+                : "accessories"}
           </span>
         </div>
         <div className="item-list">
