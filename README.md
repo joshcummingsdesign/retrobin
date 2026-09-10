@@ -1,6 +1,6 @@
 # RetroBin
 
-My retro gaming stuff.
+A retro gaming console archive.
 
 ## Run it
 

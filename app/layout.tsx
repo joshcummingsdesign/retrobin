@@ -3,7 +3,7 @@ import "./styles.css";
 
 export const metadata: Metadata = {
   title: "RetroBin",
-  description: "My retro gaming stuff.",
+  description: "A retro gaming console archive.",
 };
 
 export default function RootLayout({
