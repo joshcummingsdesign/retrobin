@@ -137,7 +137,8 @@ export default function Catalog() {
         <small>{error}</small>
       </main>
     );
-  if (!current) return <main className="status">Loading collection…</main>;
+  if (!current)
+    return <main className="status loading">Loading collection…</main>;
 
   return (
     <main>
