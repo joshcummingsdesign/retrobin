@@ -1,10 +1,10 @@
 id,name,releaseDate,company,imagePath
 nes,NES,1985-10-18,Nintendo,
 gb,Game Boy,1989-07-31,Nintendo,
-genesis,Sega Genesis,1989-08-14,Sega,/images/consoles/sega-genesis.png
-game-gear,Game Gear,1991-04-15,Sega,/images/consoles/game-gear.png
-snes,Super Nintendo,1991-08-23,Nintendo,/images/consoles/snes.png
+genesis,Sega Genesis,1989-08-14,Sega,/images/genesis/genesis.png
+game-gear,Game Gear,1991-04-15,Sega,/images/game-gear/game-gear.png
+snes,Super Nintendo,1991-08-23,Nintendo,/images/snes/snes.png
 n64,Nintendo 64,1996-09-29,Nintendo,
 gba,Game Boy Advance,2001-06-11,Nintendo,
-gba-sp,Game Boy Advance SP,2003-03-23,Nintendo,/images/consoles/gba-sp.png
-wii,Wii,2006-11-19,Nintendo,/images/consoles/wii.png
+gba-sp,Game Boy Advance SP,2003-03-23,Nintendo,/images/gba-sp/gba-sp.png
+wii,Wii,2006-11-19,Nintendo,/images/wii/wii.png
