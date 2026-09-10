@@ -1,4 +1,4 @@
-# Retro Log
+# RetroBin
 
 My retro gaming stuff.
 

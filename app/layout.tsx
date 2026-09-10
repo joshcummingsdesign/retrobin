@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import "./styles.css";
 
 export const metadata: Metadata = {
-  title: "Retro Log",
-  description: "A personal collection of retro consoles, games, and accessories.",
+  title: "RetroBin",
+  description: "My retro gaming stuff.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>{children}</body>
