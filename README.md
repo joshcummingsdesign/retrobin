@@ -1,6 +1,6 @@
 # Retro Log
 
-A responsive Next.js catalog driven by local CSV files and images.
+My retro gaming stuff.
 
 ## Run it
 
