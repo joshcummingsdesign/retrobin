@@ -1,4 +1,5 @@
 id,type,name,originalConsoleId,consoleIds,releaseDate,company,imagePath,status
+genesis-controller-old,accessory,Controller (2),genesis,genesis,1989-08-14,Sega,/images/genesis/genesis-controller.png,for-sale
 genesis-controller,accessory,Controller (2),genesis,genesis,1989-08-14,Sega,/images/genesis/genesis-controller.png,incoming
 genesis-sonic,game,Sonic the Hedgehog,genesis,genesis,1991-06-23,Sega,/images/genesis/sonic.jpg,owned
 genesis-sonic-2,game,Sonic the Hedgehog 2,genesis,genesis,1992-11-24,Sega,/images/genesis/sonic-2.jpg,owned
