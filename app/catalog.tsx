@@ -26,6 +26,7 @@ const statuses = {
 
 type ItemStatus = keyof typeof statuses;
 type StatusFilter = "all" | ItemStatus;
+type View = "consoles" | "items";
 
 type Item = {
   id: string;
@@ -170,6 +171,7 @@ export default function Catalog() {
   const [consoles, setConsoles] = useState<Console[]>([]);
   const [allConsoles, setAllConsoles] = useState<Console[]>([]);
   const [items, setItems] = useState<Item[]>([]);
+  const [view, setView] = useState<View>("consoles");
   const [selected, setSelected] = useState(0);
   const [kind, setKind] = useState<Item["type"]>("game");
   const [status, setStatus] = useState<StatusFilter>("all");
@@ -204,16 +206,17 @@ export default function Catalog() {
 
   const current = consoles[selected];
   const visibleItems = useMemo(() => {
-    if (!current) return [];
     return items
       .filter(
         (item) =>
-          item.type === kind &&
           (status === "all" || item.status === status) &&
-          item.consoleIds.split("|").includes(current.id),
+          (view === "items" ||
+            (current &&
+              item.type === kind &&
+              item.consoleIds.split("|").includes(current.id))),
       )
       .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
-  }, [current, items, kind, status]);
+  }, [current, items, kind, status, view]);
   const move = (amount: number) => {
     setSelected(
       (index) => (index + amount + consoles.length) % consoles.length,
@@ -238,15 +241,28 @@ export default function Catalog() {
     return <main className="status loading">Loading collection…</main>;
 
   return (
-    <main>
+    <main className={`view-${view}`}>
       <header className="site-header">
         <div className="brand">
           <img src="/images/retrobin-mark.png" alt="" />
           RetroBin
         </div>
-        <span>Console Archive</span>
+        <div className="view-toggle" role="group" aria-label="Collection view">
+          <button
+            className={view === "consoles" ? "active" : ""}
+            onClick={() => setView("consoles")}
+          >
+            Consoles
+          </button>
+          <button
+            className={view === "items" ? "active" : ""}
+            onClick={() => setView("items")}
+          >
+            Items
+          </button>
+        </div>
       </header>
-      <section className="hero" id="top">
+      {view === "consoles" && <section className="hero" id="top">
         <div
           className="hero-art"
           aria-label="Console carousel"
@@ -344,11 +360,11 @@ export default function Catalog() {
             </div>
           </nav>
         </div>
-      </section>
+      </section>}
 
-      <section className="collection" id="collection" aria-label={`${current.name} collection`}>
+      <section className="collection" id="collection" aria-label={view === "items" ? "All items" : `${current.name} collection`}>
         <div className="collection-toolbar">
-          <div className="tabs" role="group" aria-label="Collection type">
+          {view === "consoles" && <div className="tabs" role="group" aria-label="Collection type">
             <button
               className={kind === "game" ? "active" : ""}
               onClick={() => setKind("game")}
@@ -361,7 +377,7 @@ export default function Catalog() {
             >
               Accessories
             </button>
-          </div>
+          </div>}
           <StatusFilter
             value={status}
             onChange={setStatus}
@@ -372,7 +388,7 @@ export default function Catalog() {
             const original = allConsoles.find(
               (console) => console.id === item.originalConsoleId,
             );
-            const badge = kind === "game" ? original?.name : item.company;
+            const badge = original?.name;
             return (
               <article className={`item-row${item.status === "wanted" || item.status === "incoming" ? " unavailable" : ""}`} key={item.id}>
                 <Artwork src={item.imagePath} alt="" />
@@ -392,7 +408,7 @@ export default function Catalog() {
           {!visibleItems.length && (
             <p className="empty">
               No {status === "all" ? "" : `${statuses[status].toLowerCase()} `}
-              {kind === "game" ? "games" : "accessories"} added yet.
+              {view === "items" ? "items" : kind === "game" ? "games" : "accessories"} added yet.
             </p>
           )}
         </div>

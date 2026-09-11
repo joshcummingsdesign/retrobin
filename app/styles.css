@@ -34,9 +34,12 @@ main { min-height: 100vh; background: radial-gradient(ellipse at 50% 24%, #12375
   font-size: 13px;
   letter-spacing: .04em;
 }
-.site-header > span { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; opacity: .9; }
 .brand { display: flex; align-items: center; gap: 6px; color: var(--ink); font-size: 18px; font-weight: 800; letter-spacing: -.03em; }
 .brand img { width: 27px; height: 22px; object-fit: contain; transform: translateY(-1px); }
+.view-toggle { display: grid; grid-template-columns: repeat(2, auto); padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: #090b0ecc; }
+.view-toggle button { padding: 7px 11px; border: 0; border-radius: 999px; color: var(--muted); background: transparent; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.view-toggle button.active { color: #090b0e; background: var(--ink); }
+.view-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .hero {
   position: relative;
   display: grid;
@@ -89,6 +92,8 @@ dd { margin: 0; }
 .tabs button { padding: 10px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
 .tabs button.active { color: #090b0e; background: var(--ink); }
 .collection { min-height: 60vh; padding: 10px clamp(20px, 7vw, 110px) 100px; }
+.view-items .collection { min-height: 100vh; padding-top: 110px; }
+.view-items .collection-toolbar { justify-content: flex-end; }
 .collection-toolbar { width: min(900px, 100%); margin: 0 auto 20px; display: flex; align-items: center; justify-content: space-between; }
 .status-filter {
   position: relative;
