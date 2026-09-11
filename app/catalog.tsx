@@ -26,6 +26,7 @@ const statuses = {
 
 type ItemStatus = keyof typeof statuses;
 type StatusFilter = "all" | ItemStatus;
+type ItemTypeFilter = "all" | Item["type"];
 type View = "consoles" | "items";
 
 type Item = {
@@ -173,8 +174,8 @@ export default function Catalog() {
   const [items, setItems] = useState<Item[]>([]);
   const [view, setView] = useState<View>("consoles");
   const [selected, setSelected] = useState(0);
-  const [kind, setKind] = useState<Item["type"]>("game");
-  const [status, setStatus] = useState<StatusFilter>("all");
+  const [kind, setKind] = useState<ItemTypeFilter>("game");
+  const [status, setStatus] = useState<StatusFilter>("owned");
   const [error, setError] = useState("");
   const pointerStart = useRef<number | null>(null);
   const dragged = useRef(false);
@@ -193,7 +194,6 @@ export default function Catalog() {
             .filter((console) =>
               nextItems.some(
                 (item) =>
-                  item.type === "game" &&
                   item.consoleIds.split("|").includes(console.id),
               ),
             )
@@ -210,9 +210,9 @@ export default function Catalog() {
       .filter(
         (item) =>
           (status === "all" || item.status === status) &&
+          (kind === "all" || item.type === kind) &&
           (view === "items" ||
             (current &&
-              item.type === kind &&
               item.consoleIds.split("|").includes(current.id))),
       )
       .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
@@ -243,10 +243,20 @@ export default function Catalog() {
   return (
     <main className={`view-${view}`}>
       <header className="site-header">
-        <div className="brand">
+        <button
+          className="brand"
+          onClick={() => {
+            setView("consoles");
+            setSelected(0);
+            setKind("game");
+            setStatus("owned");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          aria-label="Reset collection"
+        >
           <img src="/images/retrobin-mark.png" alt="" />
           RetroBin
-        </div>
+        </button>
         <div className="view-toggle" role="group" aria-label="Collection view">
           <button
             className={view === "consoles" ? "active" : ""}
@@ -364,7 +374,13 @@ export default function Catalog() {
 
       <section className="collection" id="collection" aria-label={view === "items" ? "All items" : `${current.name} collection`}>
         <div className="collection-toolbar">
-          {view === "consoles" && <div className="tabs" role="group" aria-label="Collection type">
+          <div className="tabs" role="group" aria-label="Collection type">
+            <button
+              className={kind === "all" ? "active" : ""}
+              onClick={() => setKind("all")}
+            >
+              All
+            </button>
             <button
               className={kind === "game" ? "active" : ""}
               onClick={() => setKind("game")}
@@ -377,7 +393,7 @@ export default function Catalog() {
             >
               Accessories
             </button>
-          </div>}
+          </div>
           <StatusFilter
             value={status}
             onChange={setStatus}
@@ -408,7 +424,7 @@ export default function Catalog() {
           {!visibleItems.length && (
             <p className="empty">
               No {status === "all" ? "" : `${statuses[status].toLowerCase()} `}
-              {view === "items" ? "items" : kind === "game" ? "games" : "accessories"} added yet.
+              {kind === "all" ? "items" : kind === "game" ? "games" : "accessories"} added yet.
             </p>
           )}
         </div>
