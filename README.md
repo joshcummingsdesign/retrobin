@@ -13,10 +13,10 @@ Open http://localhost:3000.
 
 ## Update the collection
 
-1. Export the `Consoles` Google Sheet tab to `public/data/consoles.csv`.
-2. Export the `Items` tab to `public/data/items.csv`.
-3. Put transparent 640×480 PNG artwork in the matching folder under `public/images`.
-4. Commit and redeploy.
+1. Edit the published Google Sheet's `Consoles` and `Items` tabs.
+2. Put transparent 640×480 PNG artwork in the matching folder under `public/images`.
+
+Changes to the published Sheet appear after refreshing the site; Google may briefly cache them.
 
 Separate multiple values in `consoleIds` with `|`. Dates use `YYYY-MM-DD`.
 Item statuses are `owned`, `wanted`, `for-sale`, or `incoming`.
