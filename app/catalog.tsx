@@ -25,6 +25,7 @@ const statuses = {
 } as const;
 
 type ItemStatus = keyof typeof statuses;
+type StatusFilter = "all" | ItemStatus;
 
 type Item = {
   id: string;
@@ -100,12 +101,78 @@ function StatusIcon({ status }: { status: ItemStatus }) {
   );
 }
 
+function StatusFilter({
+  value,
+  onChange,
+}: {
+  value: StatusFilter;
+  onChange: (status: StatusFilter) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: MouseEvent | KeyboardEvent) => {
+      if (
+        event instanceof KeyboardEvent
+          ? event.key === "Escape"
+          : !root.current?.contains(event.target as Node)
+      )
+        setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    document.addEventListener("keydown", close);
+    return () => {
+      document.removeEventListener("mousedown", close);
+      document.removeEventListener("keydown", close);
+    };
+  }, [open]);
+
+  const options: [StatusFilter, string][] = [
+    ["all", "All"],
+    ...Object.entries(statuses) as [ItemStatus, string][],
+  ];
+
+  return (
+    <div className="status-filter" ref={root}>
+      <button
+        type="button"
+        aria-label="Filter by status"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+      >
+        {value === "all" ? "All" : statuses[value]}
+        <span aria-hidden="true" />
+      </button>
+      {open && (
+        <div className="status-menu">
+          {options.map(([option, label]) => (
+            <button
+              type="button"
+              className={option === value ? "active" : ""}
+              key={option}
+              onClick={() => {
+                onChange(option);
+                setOpen(false);
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Catalog() {
   const [consoles, setConsoles] = useState<Console[]>([]);
   const [allConsoles, setAllConsoles] = useState<Console[]>([]);
   const [items, setItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState(0);
   const [kind, setKind] = useState<Item["type"]>("game");
+  const [status, setStatus] = useState<StatusFilter>("all");
   const [error, setError] = useState("");
   const pointerStart = useRef<number | null>(null);
   const dragged = useRef(false);
@@ -141,10 +208,12 @@ export default function Catalog() {
     return items
       .filter(
         (item) =>
-          item.type === kind && item.consoleIds.split("|").includes(current.id),
+          item.type === kind &&
+          (status === "all" || item.status === status) &&
+          item.consoleIds.split("|").includes(current.id),
       )
       .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
-  }, [current, items, kind]);
+  }, [current, items, kind, status]);
   const move = (amount: number) => {
     setSelected(
       (index) => (index + amount + consoles.length) % consoles.length,
@@ -293,14 +362,10 @@ export default function Catalog() {
               Accessories
             </button>
           </div>
-          <span>
-            {visibleItems.length}{" "}
-            {visibleItems.length === 1
-              ? kind
-              : kind === "game"
-                ? "games"
-                : "accessories"}
-          </span>
+          <StatusFilter
+            value={status}
+            onChange={setStatus}
+          />
         </div>
         <div className="item-list">
           {visibleItems.map((item) => {
@@ -326,7 +391,8 @@ export default function Catalog() {
           })}
           {!visibleItems.length && (
             <p className="empty">
-              No {kind === "game" ? "games" : "accessories"} added yet.
+              No {status === "all" ? "" : `${statuses[status].toLowerCase()} `}
+              {kind === "game" ? "games" : "accessories"} added yet.
             </p>
           )}
         </div>
