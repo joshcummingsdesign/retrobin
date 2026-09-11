@@ -19,3 +19,4 @@ Open http://localhost:3000.
 4. Commit and redeploy.
 
 Separate multiple values in `consoleIds` with `|`. Dates use `YYYY-MM-DD`.
+Item statuses are `owned`, `wanted`, `for-sale`, or `incoming`.

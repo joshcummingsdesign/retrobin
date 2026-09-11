@@ -99,16 +99,26 @@ dd { margin: 0; }
   align-items: center;
   min-height: 126px;
   padding: 12px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #56616e;
   font-size: clamp(17px, 2.2vw, 22px);
   font-weight: 700;
 }
-.item-row:last-of-type { border-bottom: 1px solid var(--line); }
+.item-row:last-of-type { border-bottom: 1px solid #56616e; }
 .item-row img { width: 100px; height: 100px; object-fit: contain; }
 .item-name { display: grid; gap: 8px; min-width: 0; }
 .item-name strong { white-space: nowrap; }
 .item-name small { width: max-content; padding: 4px 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.item-meta { display: flex; align-items: center; gap: 8px; }
 .item-row time { color: var(--muted); font-size: 15px; font-weight: 400; }
+.item-row.unavailable > img, .item-row.unavailable > .item-name, .item-row.unavailable time { opacity: .45; }
+.item-status { position: relative; display: grid; place-items: center; width: 28px; height: 28px; color: var(--muted); }
+.item-status svg { width: 22px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.item-status.wanted { color: #f6c85f; }
+.item-status.for-sale { color: #ff7b84; }
+.item-status.incoming { color: #65afff; }
+.item-tooltip { position: absolute; right: 50%; bottom: calc(100% + 6px); z-index: 10; padding: 5px 8px; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); background: #090b0e; font-size: 11px; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transform: translateX(50%) translateY(3px); transition: opacity .15s, transform .15s, visibility .15s; }
+.item-status:hover .item-tooltip, .item-status:focus-visible .item-tooltip { opacity: 1; visibility: visible; transform: translateX(50%); }
+.item-status:focus-visible { outline: 2px solid var(--accent); border-radius: 4px; }
 .empty, .status { min-height: 50vh; display: grid; place-items: center; color: var(--muted); }
 .status { min-height: 100vh; align-content: center; gap: 4px; }
 .status p { margin: 0; color: var(--ink); }
@@ -131,7 +141,6 @@ dd { margin: 0; }
   .item-row img { width: 72px; height: 72px; }
   .item-name { gap: 6px; }
   .item-name strong { white-space: normal; text-wrap: balance; }
-  .item-row time { margin-left: 20px; }
 }
 
 @media (max-width: 520px) {

@@ -17,6 +17,15 @@ type Console = {
   imagePath: string;
 };
 
+const statuses = {
+  owned: "Owned",
+  wanted: "Wanted",
+  "for-sale": "For Sale",
+  incoming: "Incoming",
+} as const;
+
+type ItemStatus = keyof typeof statuses;
+
 type Item = {
   id: string;
   type: "game" | "accessory";
@@ -26,6 +35,7 @@ type Item = {
   releaseDate: string;
   company: string;
   imagePath: string;
+  status: ItemStatus;
 };
 
 const date = (value: string, yearOnly = false) => {
@@ -74,6 +84,22 @@ function Artwork({ src, alt }: { src: string; alt: string }) {
   );
 }
 
+function StatusIcon({ status }: { status: ItemStatus }) {
+  if (status === "owned") return null;
+  return (
+    <span className={`item-status ${status}`} tabIndex={0} aria-label={statuses[status]}>
+      {status === "wanted" ? (
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 1 6m5-6-1 6M7 9 4 18m13-9 3 9M9 13h6"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/></svg>
+      ) : status === "incoming" ? (
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 7 8-4 8 4-8 4-8-4Zm0 0v10l8 4 8-4V7M12 11v10"/></svg>
+      ) : (
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13 11 22l-9-9V4h9l9 9Z"/><circle cx="7" cy="9" r="1"/></svg>
+      )}
+      <span className="item-tooltip" role="tooltip">{statuses[status]}</span>
+    </span>
+  );
+}
+
 export default function Catalog() {
   const [consoles, setConsoles] = useState<Console[]>([]);
   const [allConsoles, setAllConsoles] = useState<Console[]>([]);
@@ -90,6 +116,8 @@ export default function Catalog() {
       loadCsv<Item>("/data/items.csv"),
     ])
       .then(([nextConsoles, nextItems]) => {
+        const invalid = nextItems.find((item) => !(item.status in statuses));
+        if (invalid) throw new Error(`Invalid status for ${invalid.id}`);
         setAllConsoles(nextConsoles);
         setConsoles(
           nextConsoles
@@ -281,15 +309,18 @@ export default function Catalog() {
             );
             const badge = kind === "game" ? original?.name : item.company;
             return (
-              <article className="item-row" key={item.id}>
+              <article className={`item-row${item.status === "wanted" || item.status === "incoming" ? " unavailable" : ""}`} key={item.id}>
                 <Artwork src={item.imagePath} alt="" />
                 <span className="item-name">
                   <strong>{item.name}</strong>
                   {badge && <small>{badge}</small>}
                 </span>
-                <time dateTime={item.releaseDate}>
-                  {date(item.releaseDate, true)}
-                </time>
+                <span className="item-meta">
+                  <StatusIcon status={item.status} />
+                  <time dateTime={item.releaseDate}>
+                    {date(item.releaseDate, true)}
+                  </time>
+                </span>
               </article>
             );
           })}
