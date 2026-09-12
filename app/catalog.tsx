@@ -18,14 +18,15 @@ type Console = {
 };
 
 const statuses = {
-  owned: "Owned",
-  wanted: "Wanted",
-  "for-sale": "For Sale",
-  incoming: "Incoming",
+  favorites: "Favorites",
+  hunting: "Hunting",
+  trading: "Trading",
+  awaiting: "Awaiting",
 } as const;
 
-type ItemStatus = keyof typeof statuses;
-type StatusFilter = "all" | ItemStatus;
+type CategorizedStatus = keyof typeof statuses;
+type ItemStatus = "" | CategorizedStatus;
+type StatusFilter = "all" | CategorizedStatus;
 type ItemTypeFilter = "all" | Item["type"];
 type View = "consoles" | "items";
 
@@ -91,12 +92,12 @@ function Artwork({ src, alt }: { src: string; alt: string }) {
 }
 
 function StatusIcon({ status }: { status: ItemStatus }) {
-  if (status === "owned") return null;
+  if (!status || status === "favorites") return null;
   return (
     <span className={`item-status ${status}`} tabIndex={0} aria-label={statuses[status]}>
-      {status === "wanted" ? (
+      {status === "hunting" ? (
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 1 6m5-6-1 6M7 9 4 18m13-9 3 9M9 13h6"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/></svg>
-      ) : status === "incoming" ? (
+      ) : status === "awaiting" ? (
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 7 8-4 8 4-8 4-8-4Zm0 0v10l8 4 8-4V7M12 11v10"/></svg>
       ) : (
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13 11 22l-9-9V4h9l9 9Z"/><circle cx="7" cy="9" r="1"/></svg>
@@ -136,7 +137,7 @@ function StatusFilter({
 
   const options: [StatusFilter, string][] = [
     ["all", "All"],
-    ...Object.entries(statuses) as [ItemStatus, string][],
+    ...Object.entries(statuses) as [CategorizedStatus, string][],
   ];
 
   return (
@@ -178,7 +179,7 @@ export default function Catalog() {
   const [view, setView] = useState<View>("consoles");
   const [selected, setSelected] = useState(0);
   const [kind, setKind] = useState<ItemTypeFilter>("game");
-  const [status, setStatus] = useState<StatusFilter>("owned");
+  const [status, setStatus] = useState<StatusFilter>("favorites");
   const [error, setError] = useState("");
   const pointerStart = useRef<number | null>(null);
   const dragged = useRef(false);
@@ -189,7 +190,9 @@ export default function Catalog() {
       loadCsv<Item>(sheetCsv("93899983")),
     ])
       .then(([nextConsoles, nextItems]) => {
-        const invalid = nextItems.find((item) => !(item.status in statuses));
+        const invalid = nextItems.find(
+          (item) => item.status && !(item.status in statuses),
+        );
         if (invalid) throw new Error(`Invalid status for ${invalid.id}`);
         setAllConsoles(nextConsoles);
         setConsoles(
@@ -252,7 +255,7 @@ export default function Catalog() {
             setView("consoles");
             setSelected(0);
             setKind("game");
-            setStatus("owned");
+            setStatus("favorites");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           aria-label="Reset collection"
@@ -409,7 +412,7 @@ export default function Catalog() {
             );
             const badge = original?.name;
             return (
-              <article className={`item-row${item.status === "wanted" || item.status === "incoming" ? " unavailable" : ""}`} key={item.id}>
+              <article className={`item-row${item.status === "hunting" || item.status === "awaiting" ? " unavailable" : ""}`} key={item.id}>
                 <Artwork src={item.imagePath} alt="" />
                 <span className="item-name">
                   <strong>{item.name}</strong>

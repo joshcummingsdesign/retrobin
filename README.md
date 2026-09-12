@@ -19,4 +19,4 @@ Open http://localhost:3000.
 Changes to the published Sheet appear after refreshing the site; Google may briefly cache them.
 
 Separate multiple values in `consoleIds` with `|`. Dates use `YYYY-MM-DD`.
-Item statuses are `owned`, `wanted`, `for-sale`, or `incoming`.
+Item statuses are `favorites`, `hunting`, `trading`, or `awaiting`. Leave the status blank for uncategorized items.
