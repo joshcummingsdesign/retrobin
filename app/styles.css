@@ -158,8 +158,8 @@ dd { margin: 0; }
 .empty, .status { min-height: 50vh; display: grid; place-items: center; color: var(--muted); }
 .status { min-height: 100vh; align-content: center; gap: 4px; }
 .status p { margin: 0; color: var(--ink); }
-.loading { visibility: hidden; animation: reveal-loading 0s .3s forwards; }
-@keyframes reveal-loading { to { visibility: visible; } }
+.loading::after { width: 32px; height: 32px; border: 4px dotted white; border-radius: 50%; content: ""; opacity: .75; animation: spin 3s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
 
 @media (max-width: 760px) {
   .site-header { padding: 20px; }
@@ -194,4 +194,5 @@ dd { margin: 0; }
   .carousel-card { transition: none; }
   .console-dots button::before { transition: none; }
   .view-toggle::before, .tabs::before, .view-toggle button, .tabs button { transition: none; }
+  .loading::after { animation: none; }
 }

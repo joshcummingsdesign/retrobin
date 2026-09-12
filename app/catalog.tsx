@@ -241,7 +241,7 @@ export default function Catalog() {
       </main>
     );
   if (!current)
-    return <main className="status loading">Loading collection…</main>;
+    return <main className="status loading" role="status" aria-label="Loading collection" />;
 
   return (
     <main className={`view-${view}`}>
