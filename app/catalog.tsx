@@ -15,6 +15,7 @@ type Console = {
   releaseDate: string;
   company: string;
   imagePath: string;
+  status: ItemStatus;
 };
 
 const statuses = {
@@ -91,10 +92,10 @@ function Artwork({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function StatusIcon({ status }: { status: ItemStatus }) {
+function StatusIcon({ status, focusable = true }: { status: ItemStatus; focusable?: boolean }) {
   if (!status || status === "favorites") return null;
   return (
-    <span className={`item-status ${status}`} tabIndex={0} aria-label={statuses[status]}>
+    <span className={`item-status ${status}`} tabIndex={focusable ? 0 : undefined} aria-label={statuses[status]}>
       {status === "hunting" ? (
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 1 6m5-6-1 6M7 9 4 18m13-9 3 9M9 13h6"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/></svg>
       ) : status === "awaiting" ? (
@@ -190,8 +191,8 @@ export default function Catalog() {
       loadCsv<Item>(sheetCsv("93899983")),
     ])
       .then(([nextConsoles, nextItems]) => {
-        const invalid = nextItems.find(
-          (item) => item.status && !(item.status in statuses),
+        const invalid = [...nextConsoles, ...nextItems].find(
+          (entry) => entry.status && !(entry.status in statuses),
         );
         if (invalid) throw new Error(`Invalid status for ${invalid.id}`);
         setAllConsoles(nextConsoles);
@@ -324,16 +325,17 @@ export default function Catalog() {
             } as CSSProperties;
             return (
               <button
-                className={`carousel-card${offset === 0 ? " selected" : ""}${distance > 1 ? " far" : ""}`}
+                className={`carousel-card${offset === 0 ? " selected" : ""}${distance > 1 ? " far" : ""}${entry.status === "hunting" || entry.status === "awaiting" ? " unavailable" : ""}`}
                 key={entry.id}
                 style={style}
                 onClick={() => offset === 0 ? document.getElementById("collection")?.scrollIntoView() : setSelected(index)}
-                aria-label={offset === 0 ? `Browse ${entry.name} collection` : `Show ${entry.name}`}
+                aria-label={`${offset === 0 ? `Browse ${entry.name} collection` : `Show ${entry.name}`}${entry.status && entry.status !== "favorites" ? `, ${statuses[entry.status]}` : ""}`}
                 aria-current={offset === 0 ? "true" : undefined}
                 aria-hidden={distance > 1}
                 tabIndex={distance > 1 ? -1 : 0}
               >
                 <Artwork src={entry.imagePath} alt="" />
+                <StatusIcon status={entry.status} focusable={false} />
               </button>
             );
           })}
