@@ -72,9 +72,6 @@ const loadCsv = async <T,>(path: string) => {
   return result.data;
 };
 
-const sheetCsv = (gid: string) =>
-  `https://docs.google.com/spreadsheets/d/e/2PACX-1vRhw4eEfPvSPaVqF5HDCrW9CiVTC6rggL8iRkX5PBfvM5v46yDlbN6dZJbxhkJxQXVHLLJDl2zpxj0S/pub?output=csv&gid=${gid}`;
-
 function Artwork({ src, alt }: { src: string; alt: string }) {
   const [failed, setFailed] = useState(false);
   const placeholder = src.includes("/games/")
@@ -187,8 +184,8 @@ export default function Catalog() {
 
   useEffect(() => {
     Promise.all([
-      loadCsv<Console>(sheetCsv("1163897604")),
-      loadCsv<Item>(sheetCsv("93899983")),
+      loadCsv<Console>("/data/consoles.csv"),
+      loadCsv<Item>("/data/items.csv"),
     ])
       .then(([nextConsoles, nextItems]) => {
         const invalid = [...nextConsoles, ...nextItems].find(

@@ -1,0 +1,13 @@
+id,name,releaseDate,company,imagePath,status
+gb,Game Boy,1989-07-31,Nintendo,,
+genesis,Sega Genesis,1989-08-14,Sega,/images/genesis/genesis.png,
+game-gear,Game Gear,1991-04-15,Sega,/images/game-gear/game-gear.png,
+snes,Super Nintendo,1991-08-23,Nintendo,/images/snes/snes.png,
+sega-saturn,Sega Saturn,1995-05-11,Sega,/images/sega-saturn/sega-saturn.png,hunting
+n64,Nintendo 64,1996-09-29,Nintendo,/images/n64/n64.png,hunting
+gbc,Game Boy Color,1998-11-18,Nintendo,/images/gbc/gbc.png,hunting
+gba,Game Boy Advance,2001-06-11,Nintendo,,
+gba-sp,Game Boy Advance SP,2003-03-23,Nintendo,/images/gba-sp/gba-sp.png,
+wii,Wii,2006-11-19,Nintendo,/images/wii/wii.png,
+wii-nes,Wii - NES,2006-11-20,Nintendo,,
+wii-n64,Wii - N64,2006-11-21,Nintendo,,

@@ -1,0 +1,49 @@
+id,type,name,originalConsoleId,consoleIds,releaseDate,company,imagePath,status
+genesis-controller,accessory,Controller (2),genesis,genesis,1989-08-14,Sega,/images/genesis/genesis-controller.png,favorites
+genesis-sonic,game,Sonic the Hedgehog,genesis,genesis,1991-06-23,Sega,/images/genesis/sonic.jpg,favorites
+genesis-sonic-2,game,Sonic the Hedgehog 2,genesis,genesis,1992-11-24,Sega,/images/genesis/sonic-2.jpg,favorites
+genesis-sonic-3,game,Sonic the Hedgehog 3,genesis,genesis,1994-02-02,Sega,/images/genesis/sonic-3.jpg,favorites
+genesis-sonic-knuckles,game,Sonic & Knuckles,genesis,genesis,1994-10-18,Sega,/images/genesis/sonic-knuckles.jpg,favorites
+genesis-nba-jam,game,NBA Jam,genesis,genesis,1994-03-04,Midway,/images/genesis/nba-jam.jpg,favorites
+genesis-ren-stimpy,game,Ren & Stimpy,genesis,genesis,1993-08-01,BlueSky Software,/images/genesis/ren-stimpy.jpg,favorites
+genesis-toy-story,game,Toy Story,genesis,genesis,1996-11-22,Traveller's Tales,/images/genesis/toy-story.jpg,favorites
+genesis-jurassic-park,game,Jurassic Park,genesis,genesis,1993-08-10,BlueSky Software,/images/genesis/jurassic-park.jpg,favorites
+snes-controller,accessory,Controller (2),snes,snes,1991-08-23,Nintendo,/images/snes/snes-controller.png,favorites
+snes-super-mario-world,game,Super Mario World,snes,snes,1991-08-23,Nintendo,/images/snes/super-mario-world.jpg,favorites
+snes-donkey-kong-country,game,Donkey Kong Country,snes,snes,1994-11-21,Rare,/images/snes/donkey-kong-country.jpg,favorites
+snes-home-alone,game,Home Alone,snes,snes,1991-12-01,Imagineering,/images/snes/home-alone.jpg,favorites
+snes-super-mario-all-stars,game,Super Mario All-Stars,snes,snes,1993-08-11,Nintendo,/images/snes/super-mario-all-stars.jpg,favorites
+game-gear-case,accessory,Carrying Case,game-gear,game-gear,1991-04-15,Sega,/images/game-gear/game-gear-case.png,favorites
+game-gear-sonic,game,Sonic the Hedgehog,game-gear,game-gear,1992-02-01,Ancient,/images/game-gear/sonic.jpg,favorites
+game-gear-sonic-2,game,Sonic the Hedgehog 2,game-gear,game-gear,1992-12-01,Sega,/images/game-gear/sonic-2.jpg,favorites
+game-gear-lion-king,game,The Lion King,game-gear,game-gear,1994-11-09,Westwood Studios,/images/game-gear/lion-king.jpg,favorites
+game-gear-power-rangers,game,Power Rangers,game-gear,game-gear,1994-09-01,Sims,/images/game-gear/power-rangers.jpg,favorites
+game-gear-cool-spot,game,Cool Spot,game-gear,game-gear,1993-10-01,Virgin,/images/game-gear/cool-spot.jpg,favorites
+gba-sp-case,accessory,Carrying Case,gba-sp,gba-sp,2003-03-23,ALS Industries,/images/gba-sp/gba-sp-case.png,favorites
+gb-tetris,game,Tetris,gb,gbc|gba-sp,1989-07-31,Nintendo,/images/gb/tetris.jpg,favorites
+gb-pokemon-red,game,Pokémon Red,gb,gbc|gba-sp,1998-09-28,Game Freak,/images/gb/pokemon-red.jpg,favorites
+sega-saturn-controller,accessory,Controller (2),sega-saturn,sega-saturn,1995-05-11,Sega,/images/sega-saturn/sega-saturn-controller.png,hunting
+sega-saturn-daytona-usa,game,Daytona USA,sega-saturn,sega-saturn,1995-05-11,Sega,/images/sega-saturn/daytona-usa.jpg,hunting
+n64-controller,accessory,Controller (2),n64,n64,1996-09-29,Nintendo,/images/n64/n64-controller.png,hunting
+n64-super-mario-64,game,Super Mario 64,n64,n64,1996-09-29,Nintendo,/images/n64/super-mario-64.jpg,hunting
+gbc-case,accessory,Carrying Case,gbc,gbc,1998-11-18,ALS Industries,,hunting
+gba-mario-kart-super-circuit,game,Mario Kart Super Circuit,gba,gba-sp,2001-08-27,Intelligent Systems,/images/gba/mario-kart-super-circuit.jpg,favorites
+gba-super-mario-advance-2,game,Super Mario Advance 2: Super Mario World,gba,gba-sp,2002-02-11,Nintendo,/images/gba/super-mario-advance-2.jpg,favorites
+gba-super-mario-advance-4,game,Super Mario Advance 4: Super Mario Bros. 3,gba,gba-sp,2003-10-21,Nintendo,/images/gba/super-mario-advance-4.jpg,awaiting
+wii-remote,accessory,Remote (2),wii,wii,2006-11-19,Nintendo,/images/wii/wii-remote.png,favorites
+wii-nunchuck,accessory,Nunchuck (2),wii,wii,2006-11-19,Nintendo,/images/wii/wii-nunchuck.png,
+wii-classic-controller-pro,accessory,Classic Controller Pro (2),wii,wii,2009-08-01,Nintendo,/images/wii/wii-classic-controller-pro.png,favorites
+wii-microphone,accessory,Microphone,wii,wii,2010-10-05,Logitech,/images/wii/wii-mic.png,
+wii-animal-crossing-city-folk,game,Animal Crossing: City Folk,wii,wii,2008-11-16,Nintendo,/images/wii/animal-crossing-city-folk.jpg,favorites
+wii-sports-resort,game,Wii Sports Resort,wii,wii,2009-07-26,Nintendo,/images/wii/wii-sports-resort.jpg,favorites
+wii-sports,game,Wii Sports,wii,wii,2006-11-19,Nintendo,/images/wii/wii-sports.jpg,favorites
+wii-mario-kart-wii,game,Mario Kart Wii,wii,wii,2008-04-27,Nintendo,/images/wii/mario-kart-wii.jpg,favorites
+wii-donkey-kong-country-returns,game,Donkey Kong Country Returns,wii,wii,2010-11-21,Retro Studios,/images/wii/donkey-kong-country-returns.jpg,
+wii-epic-mickey,game,Epic Mickey,wii,wii,2010-11-30,Disney,/images/wii/epic-mickey.jpg,
+wii-madden-10,game,Madden NFL 10,wii,wii,2009-08-14,EA,/images/wii/madden-10.jpg,
+wii-just-dance-2,game,Just Dance 2,wii,wii,2010-10-12,Ubisoft,/images/wii/just-dance-2.jpg,
+wii-def-jam-rap-star,game,Def Jam Rap Star,wii,wii,2010-10-05,Terminal Reality,/images/wii/def-jam-rap-star.jpg,
+wii-nes-super-mario-3,game,Super Mario Bros. 3,wii-nes,wii,1990-02-12,Nintendo,/images/wii/super-mario-3.jpg,favorites
+wii-n64-super-mario-64,game,Super Mario 64,wii-n64,wii,1996-09-29,Nintendo,/images/wii/super-mario-64.jpg,favorites
+wii-n64-mario-party-2,game,Mario Party 2,wii-n64,wii,2000-01-24,Hudson Soft,/images/wii/mario-party-2.jpg,
+wii-n64-1080-snowboarding,game,1080° Snowboarding,wii-n64,wii,1998-04-01,Nintendo,/images/wii/1080-snowboarding.jpg,
